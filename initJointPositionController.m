@@ -36,7 +36,7 @@ clc;
 Config.SIMULATION_TIME = 600000;
 
 % Controller period [s]
-Config.tStep           = 0.1;
+Config.tStep           = 0.01;
 
 %% PRELIMINARY CONFIGURATION
 %
@@ -46,10 +46,15 @@ Config.tStep           = 0.1;
 % Save the Matlab workspace after stopping the simulation
 Config.SAVE_WORKSPACE         = true;
 
-dataset = 'log__2019_05_27__21_00_48.mat';
+dataset = 'log__2019_05_29__15_18_10.mat';
 load(['data/' dataset]);
-desiredJointsPosition = [stateTime; jointsConfiguraion];
-desiredJointsPosition = desiredJointsPosition';
+
+scalingFactor = 10;
+
+time = [stateTime(1):0.01:stateTime(end) * scalingFactor];
+ss = spline(stateTime * scalingFactor, jointsConfiguraion, time);
+
+desiredJointsPosition = timeseries(ss', time);
 
 % Verify that the integration time has been respected during the simulation
 
