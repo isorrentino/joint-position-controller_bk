@@ -31,3 +31,10 @@ for n = 1:length(WBTConfigRobot.ControlBoardsNames)
                                              ControlBoards.(WBTConfigRobot.ControlBoardsNames{n})];
     Config.numOfJointsForEachControlboard = [Config.numOfJointsForEachControlboard; length(ControlBoards.(WBTConfigRobot.ControlBoardsNames{n}))];
 end
+
+% Frames list
+Frames.BASE       = 'root_link'; 
+Frames.IMU        = 'imu_frame';
+Frames.LEFT_FOOT  = 'l_sole';
+Frames.RIGHT_FOOT = 'r_sole';
+Frames.COM        = 'com';
