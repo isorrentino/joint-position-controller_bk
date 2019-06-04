@@ -21,6 +21,8 @@
 clearvars;
 clc;
 
+% Add path to local source code
+addpath('./src/')
 
 %% GENERAL SIMULATION INFO
 %
@@ -46,15 +48,17 @@ Config.tStep           = 0.01;
 % Save the Matlab workspace after stopping the simulation
 Config.SAVE_WORKSPACE         = true;
 
-dataset = 'log__2019_05_29__15_18_10.mat';
+dataset = 'log__2019_06_02__19_02_28.mat';
 load(['data/' dataset]);
 
-scalingFactor = 10;
+scalingFactor = 1;
 
 time = [stateTime(1):0.01:stateTime(end) * scalingFactor];
 ss = spline(stateTime * scalingFactor, jointsConfiguraion, time);
-
 desiredJointsPosition = timeseries(ss', time);
+
+desiredBaseOrientation = timeseries(baseQuaternion', stateTime * scalingFactor);
+desiredBasePosition = timeseries(basePosition', stateTime * scalingFactor);
 
 % Verify that the integration time has been respected during the simulation
 
