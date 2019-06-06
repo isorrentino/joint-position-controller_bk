@@ -48,7 +48,7 @@ Config.tStep           = 0.01;
 % Save the Matlab workspace after stopping the simulation
 Config.SAVE_WORKSPACE         = true;
 
-dataset = 'log__2019_06_02__19_02_28.mat';
+dataset = 'log__2019_06_06__16_18_49.mat';
 load(['data/' dataset]);
 
 scalingFactor = 1;
@@ -59,6 +59,9 @@ desiredJointsPosition = timeseries(ss', time);
 
 desiredBaseOrientation = timeseries(baseQuaternion', stateTime * scalingFactor);
 desiredBasePosition = timeseries(basePosition', stateTime * scalingFactor);
+
+dlmwrite('../jointDataset.txt',desiredJointsPosition.Data,'delimiter',' ','newline','pc')
+
 
 % Verify that the integration time has been respected during the simulation
 
