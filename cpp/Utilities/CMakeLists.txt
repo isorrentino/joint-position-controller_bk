@@ -14,6 +14,8 @@ add_install_rpath_support(BIN_DIRS "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_BIND
   INSTALL_NAME_DIR "${CMAKE_INSTALL_PREFIX}"
   DEPENDS ENABLE_RPATH
   USE_LINK_PATH)
+  
+find_package(Eigen3 REQUIRED)
 
 # set cpp files
 set(${UTILITY_LIBRARY_NAME}_SRC
@@ -34,4 +36,5 @@ target_include_directories(${UTILITY_LIBRARY_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE
 
 target_link_libraries(${UTILITY_LIBRARY_NAME}
   ${YARP_LIBRARIES}
-  ${iDynTree_LIBRARIES})
+  ${iDynTree_LIBRARIES}
+  Eigen3::Eigen)
