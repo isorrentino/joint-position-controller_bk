@@ -162,7 +162,7 @@ bool JointControlModule::configure(yarp::os::ResourceFinder& rf)
     //     myfile.close();
     // }
 
-    auto data = readStateFromFile("jointDataset.txt", 23);
+    auto data = readStateFromFile("jointDataset.txt", 6);
     if(!data.first)
     {
         return false;

@@ -326,19 +326,19 @@ bool RobotHelper::configureForceTorqueSensors(const yarp::os::Searchable& config
                   "the string from searchable.";
       return false;
     }
-    if(!YarpHelper::getStringFromSearchable(config, "leftFootWrenchOutputPort_name", portOutput))
+    /*if(!YarpHelper::getStringFromSearchable(config, "leftFootWrenchOutputPort_name", portOutput))
     {
         yError() << "[RobotHelper::configureForceTorqueSensors] Unable to get the string from searchable.";
         return false;
-    }
+    }*/
     // open port
     m_leftWrenchPort.open("/" + name + portInput);
     // connect port
-    if(!yarp::os::Network::connect(portOutput, "/" + name + portInput))
+    /*if(!yarp::os::Network::connect(portOutput, "/" + name + portInput))
     {
         yError() << "Unable to connect to port " << "/" + name + portInput;
         return false;
-    }
+    }*/
 
     // open and connect right foot wrench
     if(!YarpHelper::getStringFromSearchable(config, "rightFootWrenchInputPort_name", portInput))
@@ -346,19 +346,19 @@ bool RobotHelper::configureForceTorqueSensors(const yarp::os::Searchable& config
         yError() << "[RobotHelper::configureForceTorqueSensors] Unable to get the string from searchable.";
         return false;
     }
-    if(!YarpHelper::getStringFromSearchable(config, "rightFootWrenchOutputPort_name", portOutput))
+    /*if(!YarpHelper::getStringFromSearchable(config, "rightFootWrenchOutputPort_name", portOutput))
     {
         yError() << "[RobotHelper::configureForceTorqueSensors] Unable to get the string from searchable.";
         return false;
-    }
+    }*/
     // open port
     m_rightWrenchPort.open("/" + name + portInput);
     // connect port
-    if(!yarp::os::Network::connect(portOutput, "/" + name + portInput))
+    /*if(!yarp::os::Network::connect(portOutput, "/" + name + portInput))
     {
         yError() << "Unable to connect to port " << "/" + name + portInput;
         return false;
-    }
+    }*/
 
     m_useWrenchFilter = config.check("use_wrench_filter", yarp::os::Value("False")).asBool();
     if(m_useWrenchFilter)
